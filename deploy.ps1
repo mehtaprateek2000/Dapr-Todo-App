@@ -33,18 +33,18 @@ az containerapp env dapr-component set `
 az containerapp env dapr-component list --resource-group $grp --name $environment --output json
 
 # rebuild images
-docker build -t kamalrathnayake/todoappbackend -f 'TodoApp.Backend\Dockerfile' .
-docker push kamalrathnayake/todoappbackend
+docker build -t mehtaprateek/todoappbackend -f 'TodoApp.Backend\Dockerfile' .
+docker push mehtaprateek/todoappbackend
 
-docker build -t kamalrathnayake/todoappfrontend -f 'TodoApp.Frontend\Dockerfile' .
-docker push kamalrathnayake/todoappfrontend
+docker build -t mehtaprateek/todoappfrontend -f 'TodoApp.Frontend\Dockerfile' .
+docker push mehtaprateek/todoappfrontend
 
 # creating the backend
 az containerapp create `
   --name todo-back `
   --resource-group $grp `
   --environment $environment `
-  --image kamalrathnayake/todoappbackend:latest `
+  --image mehtaprateek/todoappbackend:latest `
   --target-port 80 `
   --ingress 'internal' `
   --min-replicas 1 `
@@ -59,7 +59,7 @@ az containerapp create `
   --name todo-front `
   --resource-group $grp `
   --environment $environment `
-  --image kamalrathnayake/todoappfrontend:latest `
+  --image mehtaprateek/todoappfrontend:latest `
   --target-port 80 `
   --ingress 'external' `
   --min-replicas 0 `
